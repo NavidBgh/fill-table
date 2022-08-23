@@ -6,8 +6,12 @@ export const Button = ({
   color = "primary",
   onClick = () => {},
 }) => {
+  console.log(styles);
   return (
-    <div className={styles.button} onClick={() => onClick()}>
+    <div
+      className={`${styles.button} ${styles[color]}`}
+      onClick={() => onClick()}
+    >
       {title}
     </div>
   );
