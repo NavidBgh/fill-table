@@ -6,3 +6,4 @@ export * from './Layout';
 export * from './Card';
 export * from './FormA';
 export * from './Button';
+export * from './Table';

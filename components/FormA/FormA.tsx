@@ -61,7 +61,7 @@ export const FormA = () => {
       <Button
         title="TABLE"
         color="dark"
-        onClick={() => router.push("/addresses")}
+        onClick={() => router.push("/addresses/A")}
       />
     </form>
   );
