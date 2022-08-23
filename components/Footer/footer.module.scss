@@ -1,0 +1,15 @@
+@import "../../styles/colors.module.scss";
+
+.footer {
+  display: flex;
+  align-items: center;
+  background-color: $primary_dark;
+  height: 40px;
+
+  &__section {
+    display: flex;
+    justify-content: space-between;
+    color: #ffffff;
+    font-size: 16px;
+  }
+}
