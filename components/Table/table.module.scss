@@ -3,6 +3,7 @@
 .table {
   width: 100%;
   color: $lightest;
+  border-spacing: 0;
 
   thead {
     color: $primary;
@@ -11,11 +12,32 @@
   th,
   td {
     border-bottom: 1px solid #707070;
-    padding: 27px 0;
+    padding: 25px 0;
+    font-size: 15px;
   }
 
   td {
     text-align: center;
+  }
+
+  tbody {
+    tr {
+      cursor: pointer;
+      transition: 0.2s;
+
+      &:hover {
+        background-color: rgba($color: $lightest, $alpha: 0.2);
+      }
+    }
+  }
+
+  &__actions {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    opacity: 0;
+    transition: 0.2s;
   }
 }
 
@@ -26,4 +48,12 @@
   text-align: center;
   color: $orange;
   font-size: 18px;
+}
+
+.active {
+  background-color: rgba($color: $lightest, $alpha: 0.2);
+
+  .table__actions {
+    opacity: 1;
+  }
 }

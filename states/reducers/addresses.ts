@@ -12,6 +12,13 @@ export const addresses = (state: any = initialState, action: any) => {
       return currState;
     }
 
+    case DELETE_ADDRESS: {
+      const { addressIndex } = action.payload;
+      const currState = cloneDeep(state);
+      remove(currState, (obj, index) => index === addressIndex);
+      return currState;
+    }
+
     default:
       return state;
   }

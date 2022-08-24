@@ -7,3 +7,4 @@ export * from './Card';
 export * from './FormA';
 export * from './Button';
 export * from './Table';
+export * from './SVG';
