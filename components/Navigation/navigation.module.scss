@@ -1,0 +1,33 @@
+@import "../../styles/colors.module.scss";
+
+.navigation {
+  height: 95px;
+  display: flex;
+  align-items: center;
+  background-color: $primary_dark;
+  border-bottom: 7px solid $primary;
+
+  &__section {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__menu {
+    display: flex;
+    gap: 90px;
+  }
+
+  &__item {
+    color: $lightest;
+    opacity: 0.6;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    height: 100%;
+
+    &.active,
+    &:hover {
+      opacity: 1;
+    }
+  }
+}

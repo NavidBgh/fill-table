@@ -1,0 +1,18 @@
+@import "../../styles/colors.module.scss";
+
+.footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  background-color: $primary_dark;
+  height: 40px;
+
+  &__section {
+    display: flex;
+    justify-content: space-between;
+    color: #ffffff;
+    font-size: 16px;
+  }
+}

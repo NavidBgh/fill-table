@@ -1,0 +1,15 @@
+@import "../../styles/colors.module.scss";
+
+.card {
+  width: 100%;
+  border-radius: 10px;
+  background-color: $primary_dark;
+  padding: 60px;
+  margin: 20px 0;
+
+  &__title {
+    color: $lightest;
+    font-size: 22px;
+    margin-bottom: 60px;
+  }
+}
