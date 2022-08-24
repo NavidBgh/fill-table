@@ -8,8 +8,7 @@ import { useSelector } from "react-redux";
 const Addresses: NextPage = () => {
   const router = useRouter();
   const query = router.query?.form;
-  ("");
-  const addresses = useSelector((state) => state.addresses);
+  const addresses = useSelector((state: any) => state.addresses);
 
   return (
     <Container>
