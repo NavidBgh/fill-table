@@ -2,11 +2,12 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteAddress } from "../../states";
+import { address } from "../../utils";
 import { Modal } from "../Modal";
 import { SVG } from "../SVG";
 import styles from "./table.module.scss";
 
-const tableHeader = [
+const tableHeader: string[] = [
   "NAME",
   "ID",
   "LATITUDE",
@@ -17,9 +18,9 @@ const tableHeader = [
   "ACTION",
 ];
 
-export const Table = ({ data = [] }) => {
-  const [activeRow, setActiveRow] = useState(-1);
-  const [showModal, setShowModal] = useState(false);
+export const Table = ({ data = [] }: { data: address[] }) => {
+  const [activeRow, setActiveRow] = useState<number>(-1);
+  const [showModal, setShowModal] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   const handleDeleteAddress = () => {
@@ -46,7 +47,7 @@ export const Table = ({ data = [] }) => {
 
         <tbody>
           {data?.length > 0 &&
-            data.map((dataItem, index) => (
+            data.map((dataItem: address, index: number) => (
               <tr
                 className={activeRow === index && styles.active}
                 key={index}

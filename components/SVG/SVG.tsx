@@ -1,6 +1,6 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
-export const SVG = ({ icon = "" }) => {
+export const SVG = ({ icon = "" }: { icon: string }) => {
   switch (icon) {
     case "edit":
       return (

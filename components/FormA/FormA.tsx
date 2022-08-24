@@ -6,24 +6,25 @@ import buttonStyles from "../Button/button.module.scss";
 import { useDispatch } from "react-redux";
 import { addAddress, updateAddress } from "../../states";
 import { useSelector } from "react-redux";
+import { address, query } from "../../utils";
 
-export const FormA = ({ query }) => {
-  const [formA, setFormA] = useState({
-    name: null,
-    id: null,
-    lat: null,
-    lng: null,
+export const FormA = ({ query }: query) => {
+  const [formA, setFormA] = useState<address>({
+    name: "",
+    id: "",
+    lat: "",
+    lng: "",
     type: "TYPE 01",
-    ip1: null,
-    ip2: null,
-    ip3: null,
-    ip4: null,
-    option: null,
+    ip1: "",
+    ip2: "",
+    ip3: "",
+    ip4: "",
+    option: "",
   });
   const router = useRouter();
   const dispatch = useDispatch();
   const addresses = useSelector((state) => state.addresses);
-  const edited = query.edit && query.index;
+  const edited: boolean = query.edit && query.index;
 
   const handleSubmitForm = (e: any) => {
     e.preventDefault();

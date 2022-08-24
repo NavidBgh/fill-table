@@ -3,9 +3,10 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { Card, Container, FormA } from "../components";
 import styles from "../styles/Home.module.scss";
+import { query } from "../utils";
 
 const Home: NextPage = () => {
-  const query = useRouter().query;
+  const query: query = useRouter().query;
 
   return (
     <Container>
