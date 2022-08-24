@@ -22,10 +22,17 @@ main {
   min-height: 100vh;
 }
 
-input{
+input,
+select {
   height: 33px;
+  width: 200px;
   border-radius: 10px;
   border: none;
   outline: none;
   padding: 0 10px;
+}
+
+input[type="radio"] {
+  width: initial;
+  height: initial;
 }
