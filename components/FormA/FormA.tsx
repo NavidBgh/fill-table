@@ -1,12 +1,13 @@
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../Button";
 import styles from "./form.module.scss";
 import buttonStyles from "../Button/button.module.scss";
 import { useDispatch } from "react-redux";
-import { addAddress } from "../../states";
+import { addAddress, updateAddress } from "../../states";
+import { useSelector } from "react-redux";
 
-export const FormA = () => {
+export const FormA = ({ query }) => {
   const [formA, setFormA] = useState({
     name: null,
     id: null,
@@ -21,9 +22,12 @@ export const FormA = () => {
   });
   const router = useRouter();
   const dispatch = useDispatch();
+  const addresses = useSelector((state) => state.addresses);
+  const edited = query.edit && query.index;
 
   const handleSubmitForm = (e: any) => {
     e.preventDefault();
+
     for (const key in formA) {
       if (formA[key] === null) {
         alert("PLEASE FILL ALL INPUTS");
@@ -31,9 +35,25 @@ export const FormA = () => {
       }
     }
 
+    if (edited) {
+      handleUpdateForm();
+      return;
+    }
+
     dispatch(addAddress(formA));
     router.push("/addresses/A");
   };
+
+  const handleUpdateForm = () => {
+    dispatch(updateAddress(formA, query.index));
+    router.push("/addresses/A");
+  };
+
+  useEffect(() => {
+    if (edited) {
+      setFormA(addresses[query.index]);
+    }
+  }, [query]);
 
   return (
     <form onSubmit={(e) => handleSubmitForm(e)} className={styles.form}>
@@ -44,6 +64,7 @@ export const FormA = () => {
           onChange={(e) =>
             setFormA((prev) => ({ ...prev, name: e.target.value }))
           }
+          value={formA.name}
         />
       </div>
 
@@ -54,6 +75,7 @@ export const FormA = () => {
           onChange={(e) =>
             setFormA((prev) => ({ ...prev, id: e.target.value }))
           }
+          value={formA.id}
         />
       </div>
       <div className={styles.form__section}>
@@ -63,6 +85,7 @@ export const FormA = () => {
           onChange={(e) =>
             setFormA((prev) => ({ ...prev, lat: e.target.value }))
           }
+          value={formA.lat}
         />
       </div>
       <div className={styles.form__section}>
@@ -72,6 +95,7 @@ export const FormA = () => {
           onChange={(e) =>
             setFormA((prev) => ({ ...prev, lng: e.target.value }))
           }
+          value={formA.lng}
         />
       </div>
 
@@ -82,10 +106,18 @@ export const FormA = () => {
             setFormA((prev) => ({ ...prev, type: e.target.value }))
           }
         >
-          <option value="TYPE 01">TYPE 01</option>
-          <option value="TYPE 02">TYPE 02</option>
-          <option value="TYPE 03">TYPE 03</option>
-          <option value="TYPE 04">TYPE 04</option>
+          <option value="TYPE 01" selected={formA.type === "TYPE 01" && true}>
+            TYPE 01
+          </option>
+          <option value="TYPE 02" selected={formA.type === "TYPE 02" && true}>
+            TYPE 02
+          </option>
+          <option value="TYPE 03" selected={formA.type === "TYPE 03" && true}>
+            TYPE 03
+          </option>
+          <option value="TYPE 04" selected={formA.type === "TYPE 04" && true}>
+            TYPE 04
+          </option>
         </select>
       </div>
 
@@ -99,6 +131,7 @@ export const FormA = () => {
             onChange={(e) =>
               setFormA((prev) => ({ ...prev, ip1: e.target.value }))
             }
+            value={formA.ip1}
           />
           <input
             type="text"
@@ -107,6 +140,7 @@ export const FormA = () => {
             onChange={(e) =>
               setFormA((prev) => ({ ...prev, ip2: e.target.value }))
             }
+            value={formA.ip2}
           />
           <input
             type="text"
@@ -115,6 +149,7 @@ export const FormA = () => {
             onChange={(e) =>
               setFormA((prev) => ({ ...prev, ip3: e.target.value }))
             }
+            value={formA.ip3}
           />
           <input
             type="text"
@@ -123,12 +158,14 @@ export const FormA = () => {
             onChange={(e) =>
               setFormA((prev) => ({ ...prev, ip4: e.target.value }))
             }
+            value={formA.ip4}
           />
         </div>
       </div>
 
       <div className={styles.form__section}>
         <input
+          checked={formA.option === "Option1" && true}
           type="radio"
           name="option"
           id="Option1"
@@ -138,6 +175,7 @@ export const FormA = () => {
         />
         Option1
         <input
+          checked={formA.option === "Option2" && true}
           type="radio"
           name="option"
           id="Option2"
@@ -147,6 +185,7 @@ export const FormA = () => {
         />
         Option2
         <input
+          checked={formA.option === "Option3" && true}
           type="radio"
           name="option"
           id="Option3"
@@ -160,7 +199,7 @@ export const FormA = () => {
       <div className={styles.form__actions}>
         <input
           type="submit"
-          value="ADD"
+          value={edited ? "EDIT" : "ADD"}
           className={`${buttonStyles.button} ${buttonStyles.primary}`}
         />
         <Button

@@ -1,4 +1,4 @@
-import { ADD_ADDRESS, DELETE_ADDRESS, FETCH_ADDRESS, UPDATE_ADDRESS } from "../actions/types";
+import { ADD_ADDRESS, DELETE_ADDRESS, UPDATE_ADDRESS } from "../actions/types";
 import { cloneDeep, findIndex, remove } from 'lodash';
 
 const initialState: any = [];
@@ -14,8 +14,15 @@ export const addresses = (state: any = initialState, action: any) => {
 
     case DELETE_ADDRESS: {
       const { addressIndex } = action.payload;
-      const currState = cloneDeep(state);
+      const currState = cloneDeep(state);      
       remove(currState, (obj, index) => index === addressIndex);
+      return currState;
+    }
+
+    case UPDATE_ADDRESS: {
+      const { addressDetail, addressIndex } = action.payload;
+      const currState = cloneDeep(state);
+      currState[addressIndex] = addressDetail;      
       return currState;
     }
 

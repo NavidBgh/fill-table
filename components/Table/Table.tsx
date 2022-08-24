@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { deleteAddress } from "../../states";
@@ -68,9 +69,11 @@ export const Table = ({ data = [] }) => {
                 <td>{dataItem.option}</td>
                 <td>
                   <div className={styles.table__actions}>
-                    <div>
-                      <SVG icon="edit" />
-                    </div>
+                    <Link href={`/?edit=A&index=${activeRow}`}>
+                      <a>
+                        <SVG icon="edit" />
+                      </a>
+                    </Link>
 
                     <div onClick={() => setShowModal(true)}>
                       <SVG icon="delete" />

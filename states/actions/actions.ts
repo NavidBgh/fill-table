@@ -1,4 +1,4 @@
-import { ADD_ADDRESS, DELETE_ADDRESS, FETCH_ADDRESS, UPDATE_ADDRESS } from "./types";
+import { ADD_ADDRESS, DELETE_ADDRESS, UPDATE_ADDRESS } from "./types";
 
 export const addAddress = (addressDetail: any) => ({
     type: ADD_ADDRESS,
